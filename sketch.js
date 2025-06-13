@@ -58,7 +58,7 @@ on('load', () => {
       this.x += this.dtm * dt * dx;
       this.y += this.dtm * dt * dy;
       this.angle += this.da * 1.5 * this.dtm * dt * -this.dir / dist; this.a %= 360;
-      if (this.x > 0.5 || this.x < -0.5 || this.y > 0.5 || this.y < -0.5) {
+      if (Math.abs(this.x) > 0.5 || Math.abs(this.y) > 0.5) {
         let sides = this.sides;
         this.reset();
         this.sides = sides;
@@ -180,10 +180,34 @@ on('load', () => {
       condition: () => lastSnipeHits == 2,
     },
     {
+      id: 'triangles',
+      name: 'Structural Integrity',
+      desc: 'Make all the shapes triangles.',
+      condition: () => Ps.every(p => p.sides == 3),
+    },
+    {
+      id: 'squares',
+      name: 'Minecraft',
+      desc: 'Make all the shapes squares.',
+      condition: () => Ps.every(p => p.sides == 4),
+    },
+    {
+      id: 'pentagons',
+      name: 'Penta Perfect',
+      desc: 'Make all the shapes pentagons.',
+      condition: () => Ps.every(p => p.sides == 5),
+    },
+    {
       id: 'hexagons',
       name: 'Hexagons Are The Bestagons',
       desc: 'Make all the shapes hexagons.',
       condition: () => Ps.every(p => p.sides == 6),
+    },
+    {
+      id: 'circles',
+      name: 'No Corners Here',
+      desc: 'Make all the shapes circles.',
+      condition: () => Ps.every(p => p.sides == 45),
     },
   ];
   
